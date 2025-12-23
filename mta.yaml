@@ -24,7 +24,19 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      []
+      - name: Understandingmta-db
+
+  - name: Understandingmta-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: Understandingmta-db
 
 resources:
-  []
+  - name: Understandingmta-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
